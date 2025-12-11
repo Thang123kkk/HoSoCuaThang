@@ -21,6 +21,8 @@
             --text-main: #f8fafc;
             --text-sec: #94a3b8;
             --gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            --schedule-class: rgba(234, 179, 8, 0.2); /* Màu vàng nhạt cho giờ học */
+            --schedule-fun: rgba(6, 182, 212, 0.2);   /* Màu xanh cho vui chơi */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
@@ -31,13 +33,10 @@
             overflow-x: hidden;
         }
 
-        /* --- [MỚI] CUSTOM SCROLLBAR (Thanh cuộn Neon) --- */
+        /* --- CUSTOM SCROLLBAR --- */
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { 
-            background: var(--gradient); 
-            border-radius: 5px; 
-        }
+        ::-webkit-scrollbar-thumb { background: var(--gradient); border-radius: 5px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
         /* Background Animation */
@@ -74,7 +73,6 @@
             font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
         }
         
-        /* [MỚI] HIỆU ỨNG CHỮ GRADIENT ĐỘNG */
         .hero-text h1 span {
             font-family: 'Montserrat', sans-serif;
             background: linear-gradient(to right, #3b82f6, #06b6d4, #3b82f6);
@@ -84,7 +82,6 @@
         }
         @keyframes gradientMove { 0% {background-position: 0% center;} 100% {background-position: 200% center;} }
 
-        /* [MỚI] TYPING EFFECT (Mô phỏng gõ chữ) */
         .typing-wrapper { display: inline-block; overflow: hidden; white-space: nowrap; border-right: 3px solid var(--accent); animation: typing 3.5s steps(30, end), blink-caret .75s step-end infinite; max-width: 100%; }
         @keyframes typing { from { width: 0 } to { width: 100% } }
         @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--accent); } }
@@ -97,7 +94,6 @@
         .btn-outline { padding: 12px 30px; background: transparent; border: 2px solid var(--accent); border-radius: 50px; color: var(--accent); font-weight: 700; cursor: pointer; text-decoration: none; transition: 0.3s; }
         .btn-outline:hover { background: rgba(6, 182, 212, 0.1); box-shadow: 0 0 20px rgba(6, 182, 212, 0.3); }
 
-        /* [MỚI] AVATAR PULSE (Hiệu ứng thở) */
         .hero-img-box { position: relative; width: 400px; height: 400px; display: flex; justify-content: center; align-items: center; }
         .hero-blob { position: absolute; width: 100%; height: 100%; background: var(--gradient); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; animation: blobAnim 7s linear infinite; filter: blur(30px); opacity: 0.5; }
         .hero-img { 
@@ -110,28 +106,18 @@
 
         /* --- PROFILE --- */
         section { padding: 100px 10%; }
-.section-title { 
-    text-align: center; 
-    font-size: 2.5rem; 
-    margin-bottom: 60px; 
-    font-family: 'Montserrat', sans-serif; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    position: relative; 
-    /* Đã xóa left và transform để không bị lệch */
-}        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--gradient); border-radius: 2px; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; position: relative; }
+        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--gradient); border-radius: 2px; }
         .section-title span { color: var(--accent); font-family: 'Montserrat', sans-serif; }
 
         .profile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
 
-        /* [MỚI] HOVER EFFECT CHO KHUNG */
         .glass-box { 
             background: var(--bg-card); backdrop-filter: blur(10px); 
             border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; padding: 40px; 
             height: 100%; transition: 0.4s; position: relative; overflow: hidden;
+            display: flex; flex-direction: column; justify-content: center;
         }
-        .glass-box::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent); transition: 0.5s; }
-        .glass-box:hover::before { left: 100%; }
         .glass-box:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 
         .info-list { list-style: none; }
@@ -148,6 +134,29 @@
         .w-py { width: 80%; animation: loadSkill 1.7s ease-out; }
         .w-html { width: 85%; animation: loadSkill 1.9s ease-out; }
         @keyframes loadSkill { from { width: 0; } }
+
+        /* --- SCHEDULE SECTION (MỚI) --- */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .day-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+        .day-card:hover { background: rgba(255,255,255,0.05); }
+        .day-header { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; text-transform: uppercase;}
+        
+        .schedule-item { margin-bottom: 12px; padding: 10px; border-radius: 8px; font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center;}
+        .schedule-item span { font-size: 0.85rem; opacity: 0.7; display: block;}
+        
+        .type-study { background: var(--schedule-class); border-left: 3px solid #eab308; }
+        .type-fun { background: var(--schedule-fun); border-left: 3px solid var(--accent); }
+        .type-self { background: rgba(255, 255, 255, 0.05); border-left: 3px solid var(--text-sec); }
 
         /* --- CONTACT --- */
         .contact-section { text-align: center; background: linear-gradient(to top, rgba(0,0,0,0.5), transparent); padding-bottom: 50px; }
@@ -174,10 +183,11 @@
     </div>
 
     <header>
-        <div class="logo">Q&T <span>DEV</span></div>
+        <div class="logo">Quang <span>Thắng</span></div>
         <nav class="nav-links">
             <a href="#home">Trang chủ</a>
             <a href="#profile">Hồ sơ</a>
+            <a href="#schedule">Lịch Trình</a>
             <a href="#contact">Liên hệ</a>
         </nav>
     </header>
@@ -220,9 +230,10 @@
                     <li><i class="fas fa-map-marker-alt"></i> <strong>Quê quán:</strong> <span>Quảng Ngãi</span></li>
                     <li><i class="fas fa-user-tag"></i> <strong>Vai trò:</strong> <span>Web Developer</span></li>
                     <li><i class="fas fa-futbol"></i> <strong>Sở thích:</strong> <span>Lập trình, Đá Bóng</span></li>
+                    <li><i class="fas fa-user-secret"></i> <strong>Điểm yếu:</strong> <span>Ít nói</span></li>
                 </ul>
                 <div style="margin-top: 20px; font-style: italic; opacity: 0.8; border-left: 3px solid var(--accent); padding-left: 15px;">
-                    "Ước mơ: Trở thành 1 Developer xuất sắc với mức lương nghìn đô."
+                    "Dự định tương lai: Trở thành 1 Developer xuất sắc với mức lương nghìn đô."
                 </div>
             </div>
 
@@ -257,6 +268,102 @@
                     <div class="progress-bar-bg">
                         <div class="progress-bar w-html"></div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule">
+        <h2 class="section-title">Lịch Trình <span>Cá Nhân</span></h2>
+        <div class="schedule-grid">
+            <div class="day-card">
+                <div class="day-header">Thứ Hai</div>
+                <div class="schedule-item type-self">
+                    <div>Sáng<br><span>Tự học / Code</span></div>
+                </div>
+                <div class="schedule-item type-study">
+                    <div>14:20 - 17:00<br><span>Thể dục 1</span></div>
+                </div>
+                <div class="schedule-item type-fun">
+                    <div>Tối<br><span>Cafe / Nghe nhạc</span></div>
+                </div>
+            </div>
+
+            <div class="day-card">
+                <div class="day-header">Thứ Ba</div>
+                <div class="schedule-item type-self">
+                    <div>Sáng<br><span>Ngủ nướng / Ôn bài</span></div>
+                </div>
+                <div class="schedule-item type-study">
+                    <div>12:40 - 16:10<br><span>Toán rời rạc</span></div>
+                </div>
+                <div class="schedule-item type-fun">
+                    <div>17:30<br><span>Đá bóng sân 5</span></div>
+                </div>
+            </div>
+
+            <div class="day-card">
+                <div class="day-header">Thứ Tư</div>
+                <div class="schedule-item type-study">
+                    <div>09:10 - 11:50<br><span>Vi tích phân 1</span></div>
+                </div>
+                <div class="schedule-item type-study">
+                    <div>14:20 - 17:00<br><span>Toán rời rạc</span></div>
+                </div>
+                <div class="schedule-item type-self">
+                    <div>Tối<br><span>Làm bài tập C++</span></div>
+                </div>
+            </div>
+
+            <div class="day-card">
+                <div class="day-header">Thứ Năm</div>
+                <div class="schedule-item type-study">
+                    <div>07:30 - 11:00<br><span>Nhập môn CNTT</span></div>
+                </div>
+                <div class="schedule-item type-fun">
+                    <div>Chiều<br><span>Leo rank game</span></div>
+                </div>
+                <div class="schedule-item type-self">
+                    <div>Tối<br><span>Đọc tài liệu IT</span></div>
+                </div>
+            </div>
+
+            <div class="day-card">
+                <div class="day-header">Thứ Sáu</div>
+                <div class="schedule-item type-study">
+                    <div>07:30 - 09:10<br><span>Cơ sở lập trình</span></div>
+                </div>
+                <div class="schedule-item type-study">
+                    <div>09:10 - 11:50<br><span>Nhập môn CNTT</span></div>
+                </div>
+                <div class="schedule-item type-study">
+                    <div>12:40 - 16:10<br><span>Vi tích phân 1</span></div>
+                </div>
+            </div>
+
+            <div class="day-card">
+                <div class="day-header">Thứ Bảy</div>
+                <div class="schedule-item type-study">
+                    <div>07:30 - 11:50<br><span>Cơ sở lập trình</span></div>
+                </div>
+                <div class="schedule-item type-fun">
+                    <div>Chiều<br><span>Đá bóng / Team building</span></div>
+                </div>
+                <div class="schedule-item type-fun">
+                    <div>Tối<br><span>Dạo phố / Xem phim</span></div>
+                </div>
+            </div>
+            
+            <div class="day-card">
+                <div class="day-header">Chủ Nhật</div>
+                <div class="schedule-item type-fun">
+                    <div>Sáng<br><span>Cafe sáng</span></div>
+                </div>
+                <div class="schedule-item type-self">
+                    <div>Chiều<br><span>Tổng hợp kiến thức tuần</span></div>
+                </div>
+                <div class="schedule-item type-fun">
+                    <div>Tối<br><span>Chuẩn bị bài vở</span></div>
                 </div>
             </div>
         </div>
