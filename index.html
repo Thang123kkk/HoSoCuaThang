@@ -110,8 +110,16 @@
 
         /* --- PROFILE --- */
         section { padding: 100px 10%; }
-        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; position: relative; display: inline-block; left: 50%; transform: translateX(-50%); }
-        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--gradient); border-radius: 2px; }
+.section-title { 
+    text-align: center; 
+    font-size: 2.5rem; 
+    margin-bottom: 60px; 
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    position: relative; 
+    /* Đã xóa left và transform để không bị lệch */
+}        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--gradient); border-radius: 2px; }
         .section-title span { color: var(--accent); font-family: 'Montserrat', sans-serif; }
 
         .profile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
