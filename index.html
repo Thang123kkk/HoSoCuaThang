@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- 1. CẤU HÌNH MÀU SẮC & BIẾN --- */
+        /* --- 1. CẤU HÌNH CƠ BẢN --- */
         :root {
             --bg-dark: #0f172a;
-            --bg-card: rgba(255, 255, 255, 0.05);
-            --primary: #3b82f6;       /* Xanh dương */
-            --accent: #06b6d4;        /* Cyan Neon */
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --primary: #3b82f6;       
+            --accent: #06b6d4;        
             --text-main: #f8fafc;
             --text-sec: #94a3b8;
             --gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
@@ -31,149 +31,121 @@
             overflow-x: hidden;
         }
 
+        /* --- [MỚI] CUSTOM SCROLLBAR (Thanh cuộn Neon) --- */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { 
+            background: var(--gradient); 
+            border-radius: 5px; 
+        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
         /* Background Animation */
-        .background-shapes {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden;
-        }
-        .shape {
-            position: absolute; filter: blur(80px); opacity: 0.5;
-            animation: floatShape 10s infinite alternate;
-        }
+        .background-shapes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
+        .shape { position: absolute; filter: blur(90px); opacity: 0.4; animation: floatShape 10s infinite alternate; }
         .shape-1 { width: 400px; height: 400px; background: #2563eb; top: -10%; left: -10%; border-radius: 50%; }
         .shape-2 { width: 300px; height: 300px; background: #0891b2; bottom: 10%; right: -5%; border-radius: 50%; animation-delay: -5s; }
         @keyframes floatShape { 0% { transform: translate(0, 0); } 100% { transform: translate(30px, 50px); } }
 
-        /* --- 2. HEADER --- */
+        /* --- HEADER --- */
         header {
             position: fixed; width: 100%; top: 0; z-index: 1000;
             padding: 20px 50px;
             display: flex; justify-content: space-between; align-items: center;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(15px);
+            background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        /* Logo dùng font Montserrat cho mạnh mẽ */
-        .logo { 
-            font-family: 'Montserrat', sans-serif;
-            font-size: 24px; font-weight: 800; 
-            color: var(--text-main); text-transform: uppercase; letter-spacing: 1px; 
-        }
+        .logo { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 800; color: var(--text-main); text-transform: uppercase; letter-spacing: 1px; }
         .logo span { color: var(--accent); font-family: 'Montserrat', sans-serif; }
-
         .nav-links { display: flex; gap: 30px; }
-        .nav-links a {
-            color: var(--text-main); text-decoration: none; font-weight: 500;
-            transition: 0.3s; font-size: 0.95rem;
-        }
-        .nav-links a:hover { color: var(--accent); text-shadow: 0 0 10px var(--accent); }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; transition: 0.3s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 2px; background: var(--accent); transition: 0.3s; }
+        .nav-links a:hover::after { width: 100%; }
 
-        /* --- 3. HERO SECTION (SỬA LẠI TÊN) --- */
-        .hero {
-            min-height: 100vh;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 10%; padding-top: 80px;
-        }
+        /* --- HERO SECTION --- */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: space-between; padding: 0 10%; padding-top: 80px; }
         .hero-text { max-width: 650px; z-index: 2; }
         
-        .hero-text h3 { 
-            font-size: 1.4rem; color: var(--accent); margin-bottom: 15px; 
-            font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
-        }
-        
-        /* CẬP NHẬT FONT CHO TÊN */
+        .hero-text h3 { font-size: 1.4rem; color: var(--accent); margin-bottom: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; display: flex; align-items: center; gap: 10px;}
+        .hero-text h3::before { content: ''; width: 30px; height: 2px; background: var(--accent); display: inline-block; }
+
         .hero-text h1 { 
-            font-family: 'Montserrat', sans-serif; /* Font mới */
-            font-size: 3.8rem; /* Giảm nhẹ size để vừa vặn */
-            line-height: 1.2; 
-            margin-bottom: 25px; 
-            font-weight: 800; /* Độ dày vừa phải, không quá dày */
-            text-transform: uppercase; /* In hoa cho cân đối */
-            letter-spacing: 1px; /* Khoảng cách chữ thoáng */
+            font-family: 'Montserrat', sans-serif; font-size: 3.8rem; line-height: 1.2; margin-bottom: 25px; 
+            font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
         }
         
+        /* [MỚI] HIỆU ỨNG CHỮ GRADIENT ĐỘNG */
         .hero-text h1 span {
             font-family: 'Montserrat', sans-serif;
-            background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background: linear-gradient(to right, #3b82f6, #06b6d4, #3b82f6);
+            background-size: 200% auto;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: gradientMove 3s linear infinite;
         }
+        @keyframes gradientMove { 0% {background-position: 0% center;} 100% {background-position: 200% center;} }
 
-        .hero-text p { font-size: 1.1rem; color: var(--text-sec); margin-bottom: 30px; line-height: 1.6; max-width: 90%; }
-        
+        /* [MỚI] TYPING EFFECT (Mô phỏng gõ chữ) */
+        .typing-wrapper { display: inline-block; overflow: hidden; white-space: nowrap; border-right: 3px solid var(--accent); animation: typing 3.5s steps(30, end), blink-caret .75s step-end infinite; max-width: 100%; }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--accent); } }
+
+        .hero-text p { font-size: 1.1rem; color: var(--text-sec); margin-bottom: 30px; line-height: 1.6; border-left: 3px solid rgba(255,255,255,0.1); padding-left: 20px; }
+
         .hero-btn-group { display: flex; gap: 20px; }
-        .btn-glow {
-            padding: 12px 30px; background: var(--gradient); border: none; border-radius: 50px;
-            color: white; font-weight: 700; cursor: pointer; text-decoration: none;
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); transition: 0.3s;
-        }
-        .btn-glow:hover { transform: translateY(-3px); box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
-
-        .btn-outline {
-            padding: 12px 30px; background: transparent; border: 2px solid var(--accent); border-radius: 50px;
-            color: var(--accent); font-weight: 700; cursor: pointer; text-decoration: none; transition: 0.3s;
-        }
+        .btn-glow { padding: 12px 30px; background: var(--gradient); border: none; border-radius: 50px; color: white; font-weight: 700; cursor: pointer; text-decoration: none; box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); transition: 0.3s; }
+        .btn-glow:hover { transform: translateY(-3px); box-shadow: 0 0 40px rgba(59, 130, 246, 0.8); }
+        .btn-outline { padding: 12px 30px; background: transparent; border: 2px solid var(--accent); border-radius: 50px; color: var(--accent); font-weight: 700; cursor: pointer; text-decoration: none; transition: 0.3s; }
         .btn-outline:hover { background: rgba(6, 182, 212, 0.1); box-shadow: 0 0 20px rgba(6, 182, 212, 0.3); }
 
-        /* Avatar Container */
+        /* [MỚI] AVATAR PULSE (Hiệu ứng thở) */
         .hero-img-box { position: relative; width: 400px; height: 400px; display: flex; justify-content: center; align-items: center; }
-        .hero-blob {
-            position: absolute; width: 100%; height: 100%; background: var(--gradient);
-            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-            animation: blobAnim 7s linear infinite; filter: blur(30px); opacity: 0.5;
-        }
-        .hero-img {
-            width: 380px; height: 380px; border-radius: 50%; object-fit: cover;
+        .hero-blob { position: absolute; width: 100%; height: 100%; background: var(--gradient); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; animation: blobAnim 7s linear infinite; filter: blur(30px); opacity: 0.5; }
+        .hero-img { 
+            width: 380px; height: 380px; border-radius: 50%; object-fit: cover; 
             border: 4px solid rgba(255,255,255,0.2); position: relative; z-index: 2;
+            animation: borderPulse 3s infinite alternate;
         }
+        @keyframes borderPulse { 0% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); } 100% { box-shadow: 0 0 20px 10px rgba(6, 182, 212, 0); } }
         @keyframes blobAnim { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* --- 4. ABOUT & SKILLS --- */
+        /* --- PROFILE --- */
         section { padding: 100px 10%; }
-        .section-title { 
-            text-align: center; font-size: 2.5rem; margin-bottom: 60px; 
-            font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase;
-        }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; position: relative; display: inline-block; left: 50%; transform: translateX(-50%); }
+        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--gradient); border-radius: 2px; }
         .section-title span { color: var(--accent); font-family: 'Montserrat', sans-serif; }
 
-        .profile-container {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 50px;
-        }
+        .profile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
 
-        .glass-box {
-            background: var(--bg-card); backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 40px;
-            height: 100%; transition: 0.3s;
-            display: flex; flex-direction: column; justify-content: center;
+        /* [MỚI] HOVER EFFECT CHO KHUNG */
+        .glass-box { 
+            background: var(--bg-card); backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; padding: 40px; 
+            height: 100%; transition: 0.4s; position: relative; overflow: hidden;
         }
-        .glass-box:hover { border-color: var(--primary); box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+        .glass-box::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent); transition: 0.5s; }
+        .glass-box:hover::before { left: 100%; }
+        .glass-box:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 
         .info-list { list-style: none; }
         .info-list li { margin-bottom: 20px; display: flex; align-items: center; font-size: 1.1rem; }
         .info-list li i { width: 40px; color: var(--accent); font-size: 1.3rem; }
         .info-list strong { color: var(--text-main); margin-right: 10px; min-width: 100px; }
-        .info-list span { color: var(--text-sec); }
 
-        /* Skills Progress Bars */
         .skill-item { margin-bottom: 25px; }
         .skill-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
         .skill-name { font-weight: 700; display: flex; align-items: center; gap: 10px; }
-        .skill-name i { color: var(--accent); }
-        
-        .progress-bar-bg { width: 100%; height: 10px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+        .progress-bar-bg { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
         .progress-bar { height: 100%; border-radius: 10px; background: var(--gradient); box-shadow: 0 0 10px var(--primary); position: relative; }
-        
         .w-cpp { width: 90%; animation: loadSkill 1.5s ease-out; }
         .w-py { width: 80%; animation: loadSkill 1.7s ease-out; }
         .w-html { width: 85%; animation: loadSkill 1.9s ease-out; }
         @keyframes loadSkill { from { width: 0; } }
 
-        /* --- 5. CONTACT --- */
-        .contact-section { text-align: center; background: rgba(0,0,0,0.2); padding-bottom: 50px; }
+        /* --- CONTACT --- */
+        .contact-section { text-align: center; background: linear-gradient(to top, rgba(0,0,0,0.5), transparent); padding-bottom: 50px; }
         .social-icons { margin-top: 30px; display: flex; justify-content: center; gap: 20px; }
-        .social-btn {
-            width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.05);
-            display: flex; align-items: center; justify-content: center;
-            color: var(--text-main); font-size: 1.2rem; transition: 0.3s; text-decoration: none; border: 1px solid rgba(255,255,255,0.1);
-        }
-        .social-btn:hover { background: var(--accent); color: var(--bg-dark); transform: translateY(-5px); box-shadow: 0 0 20px var(--accent); }
+        .social-btn { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: var(--text-main); font-size: 1.2rem; transition: 0.3s; text-decoration: none; border: 1px solid rgba(255,255,255,0.1); position: relative; overflow: hidden;}
+        .social-btn:hover { background: var(--accent); color: var(--bg-dark); transform: scale(1.1) rotate(10deg); box-shadow: 0 0 20px var(--accent); }
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -182,7 +154,7 @@
             .hero-img { width: 280px; height: 280px; }
             .profile-container { grid-template-columns: 1fr; }
             .nav-links { display: none; }
-            .hero-text h1 { font-size: 2.5rem; } /* Chữ nhỏ lại trên điện thoại */
+            .hero-text h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -194,7 +166,7 @@
     </div>
 
     <header>
-        <div class="logo">Quang <span>Thắng</span></div>
+        <div class="logo">Q&T <span>DEV</span></div>
         <nav class="nav-links">
             <a href="#home">Trang chủ</a>
             <a href="#profile">Hồ sơ</a>
@@ -206,7 +178,12 @@
         <div class="hero-text">
             <h3>Xin chào, mình là</h3>
             <h1>ĐỖ QUANG <span>THẮNG</span></h1>
-            <p>
+            <div class="typing-wrapper">
+                <p style="border: none; padding: 0; margin: 0; color: var(--accent); font-size: 1.5rem; font-weight: 700; font-family: 'Montserrat', sans-serif;">
+                    WEB DEVELOPER / C++ CODER
+                </p>
+            </div>
+            <p style="margin-top: 20px;">
                 Sinh viên lớp <strong>25CTT6</strong> - Trường Đại học Khoa Học Tự Nhiên, ĐHQG HCM.<br>
                 Đam mê lập trình và đang trên hành trình trở thành một <strong>Dev lương nghìn đô</strong>.
             </p>
@@ -279,7 +256,7 @@
 
     <section id="contact" class="contact-section">
         <h2 class="section-title">Kết Nối Với <span>Tôi</span></h2>
-        <p style="font-size: 1.2rem; color: var(--text-sec);">Luôn sẵn sàng cho các dự án và cơ hội hợp tác mới.</p>
+        <p style="font-size: 1.2rem; color: var(--text-sec); margin-top: 10px;">Luôn sẵn sàng cho các dự án và cơ hội hợp tác mới.</p>
         
         <div class="social-icons">
             <a href="https://www.facebook.com/thangfromthewest/?locale=vi_VN" target="_blank" class="social-btn" title="Facebook">
