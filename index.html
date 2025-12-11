@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Đẳng Cấp - [Tên Bạn]</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <title>Portfolio - Đỗ Quang Thắng</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* --- 1. CẤU HÌNH MÀU SẮC & BIẾN --- */
         :root {
-            --bg-dark: #0f172a;       /* Nền xanh thẫm */
-            --bg-card: rgba(255, 255, 255, 0.05); /* Kính mờ */
-            --primary: #3b82f6;       /* Xanh dương chuẩn */
-            --accent: #06b6d4;        /* Xanh Cyan rực rỡ */
-            --glow: #60a5fa;          /* Màu phát sáng */
-            --text-main: #f8fafc;     /* Chữ trắng */
-            --text-sec: #94a3b8;      /* Chữ xám xanh */
+            --bg-dark: #0f172a;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --primary: #3b82f6;       /* Xanh dương */
+            --accent: #06b6d4;        /* Cyan Neon */
+            --text-main: #f8fafc;
+            --text-sec: #94a3b8;
             --gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
         }
 
@@ -28,206 +31,158 @@
             overflow-x: hidden;
         }
 
-        /* Hình nền động (Blobs) */
+        /* Background Animation */
         .background-shapes {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            overflow: hidden;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden;
         }
         .shape {
-            position: absolute;
-            filter: blur(80px);
-            opacity: 0.6;
+            position: absolute; filter: blur(80px); opacity: 0.5;
             animation: floatShape 10s infinite alternate;
         }
         .shape-1 { width: 400px; height: 400px; background: #2563eb; top: -10%; left: -10%; border-radius: 50%; }
         .shape-2 { width: 300px; height: 300px; background: #0891b2; bottom: 10%; right: -5%; border-radius: 50%; animation-delay: -5s; }
-        
-        @keyframes floatShape {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(30px, 50px); }
-        }
+        @keyframes floatShape { 0% { transform: translate(0, 0); } 100% { transform: translate(30px, 50px); } }
 
-        /* --- 2. HEADER GLASSMORPHISM --- */
+        /* --- 2. HEADER --- */
         header {
             position: fixed; width: 100%; top: 0; z-index: 1000;
             padding: 20px 50px;
             display: flex; justify-content: space-between; align-items: center;
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-
+        /* Logo dùng font Montserrat cho mạnh mẽ */
         .logo { 
-            font-size: 28px; font-weight: 900; 
-            background: var(--gradient); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px; font-weight: 800; 
+            color: var(--text-main); text-transform: uppercase; letter-spacing: 1px; 
         }
+        .logo span { color: var(--accent); font-family: 'Montserrat', sans-serif; }
 
-        .nav-links { display: flex; gap: 40px; }
+        .nav-links { display: flex; gap: 30px; }
         .nav-links a {
             color: var(--text-main); text-decoration: none; font-weight: 500;
-            position: relative; transition: 0.3s;
-        }
-        .nav-links a::after {
-            content: ''; position: absolute; width: 0; height: 2px;
-            bottom: -5px; left: 0; background: var(--accent); transition: 0.3s;
+            transition: 0.3s; font-size: 0.95rem;
         }
         .nav-links a:hover { color: var(--accent); text-shadow: 0 0 10px var(--accent); }
-        .nav-links a:hover::after { width: 100%; }
 
-        /* --- 3. HERO SECTION ẤN TƯỢNG --- */
+        /* --- 3. HERO SECTION (SỬA LẠI TÊN) --- */
         .hero {
             min-height: 100vh;
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 10%;
-            position: relative;
+            padding: 0 10%; padding-top: 80px;
         }
-
-        .hero-text { max-width: 600px; z-index: 2; }
+        .hero-text { max-width: 650px; z-index: 2; }
+        
         .hero-text h3 { 
-            font-size: 1.5rem; color: var(--accent); margin-bottom: 10px; 
-            text-transform: uppercase; letter-spacing: 2px;
+            font-size: 1.4rem; color: var(--accent); margin-bottom: 15px; 
+            font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
         }
-        .hero-text h1 {
-            font-size: 4.5rem; line-height: 1.1; margin-bottom: 20px;
-            font-weight: 900;
+        
+        /* CẬP NHẬT FONT CHO TÊN */
+        .hero-text h1 { 
+            font-family: 'Montserrat', sans-serif; /* Font mới */
+            font-size: 3.8rem; /* Giảm nhẹ size để vừa vặn */
+            line-height: 1.2; 
+            margin-bottom: 25px; 
+            font-weight: 800; /* Độ dày vừa phải, không quá dày */
+            text-transform: uppercase; /* In hoa cho cân đối */
+            letter-spacing: 1px; /* Khoảng cách chữ thoáng */
         }
-        .hero-text h1 span { color: #3b82f6; text-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
-        .hero-text p { font-size: 1.2rem; color: var(--text-sec); margin-bottom: 40px; }
-
-        /* Nút bấm Neon */
-        .btn-neon {
-            padding: 15px 40px;
-            background: transparent;
-            color: var(--accent);
-            border: 2px solid var(--accent);
-            border-radius: 50px;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: 0.4s;
-            box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
-            text-decoration: none;
-            display: inline-block;
-        }
-        .btn-neon:hover {
-            background: var(--accent);
-            color: var(--bg-dark);
-            box-shadow: 0 0 30px rgba(6, 182, 212, 0.6);
+        
+        .hero-text h1 span {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        /* Avatar Floating Effect */
-        .hero-img-box {
-            position: relative;
-            width: 450px; height: 450px;
-            display: flex; justify-content: center; align-items: center;
+        .hero-text p { font-size: 1.1rem; color: var(--text-sec); margin-bottom: 30px; line-height: 1.6; max-width: 90%; }
+        
+        .hero-btn-group { display: flex; gap: 20px; }
+        .btn-glow {
+            padding: 12px 30px; background: var(--gradient); border: none; border-radius: 50px;
+            color: white; font-weight: 700; cursor: pointer; text-decoration: none;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); transition: 0.3s;
         }
+        .btn-glow:hover { transform: translateY(-3px); box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+
+        .btn-outline {
+            padding: 12px 30px; background: transparent; border: 2px solid var(--accent); border-radius: 50px;
+            color: var(--accent); font-weight: 700; cursor: pointer; text-decoration: none; transition: 0.3s;
+        }
+        .btn-outline:hover { background: rgba(6, 182, 212, 0.1); box-shadow: 0 0 20px rgba(6, 182, 212, 0.3); }
+
+        /* Avatar Container */
+        .hero-img-box { position: relative; width: 400px; height: 400px; display: flex; justify-content: center; align-items: center; }
         .hero-blob {
-            position: absolute; width: 100%; height: 100%;
-            background: var(--gradient);
+            position: absolute; width: 100%; height: 100%; background: var(--gradient);
             border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-            animation: blobAnim 6s linear infinite;
-            filter: blur(40px); opacity: 0.4;
-            z-index: 1;
+            animation: blobAnim 7s linear infinite; filter: blur(30px); opacity: 0.5;
         }
         .hero-img {
-            width: 400px; height: 400px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid rgba(255,255,255,0.1);
-            position: relative; z-index: 2;
-            animation: floatImg 4s ease-in-out infinite;
+            width: 380px; height: 380px; border-radius: 50%; object-fit: cover;
+            border: 4px solid rgba(255,255,255,0.2); position: relative; z-index: 2;
+        }
+        @keyframes blobAnim { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* --- 4. ABOUT & SKILLS --- */
+        section { padding: 100px 10%; }
+        .section-title { 
+            text-align: center; font-size: 2.5rem; margin-bottom: 60px; 
+            font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase;
+        }
+        .section-title span { color: var(--accent); font-family: 'Montserrat', sans-serif; }
+
+        .profile-container {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 50px;
         }
 
-        @keyframes blobAnim { 0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: rotate(0deg); } 100% { border-radius: 70% 30% 50% 50% / 30% 40% 70% 50%; transform: rotate(360deg); } }
-        @keyframes floatImg { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        .glass-box {
+            background: var(--bg-card); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 40px;
+            height: 100%; transition: 0.3s;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .glass-box:hover { border-color: var(--primary); box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
 
-        /* --- 4. SECTIONS CHUNG & CARDS --- */
-        section { padding: 100px 10%; position: relative; }
+        .info-list { list-style: none; }
+        .info-list li { margin-bottom: 20px; display: flex; align-items: center; font-size: 1.1rem; }
+        .info-list li i { width: 40px; color: var(--accent); font-size: 1.3rem; }
+        .info-list strong { color: var(--text-main); margin-right: 10px; min-width: 100px; }
+        .info-list span { color: var(--text-sec); }
+
+        /* Skills Progress Bars */
+        .skill-item { margin-bottom: 25px; }
+        .skill-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .skill-name { font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .skill-name i { color: var(--accent); }
         
-        .section-header { text-align: center; margin-bottom: 80px; }
-        .section-header h2 { font-size: 3rem; margin-bottom: 10px; }
-        .section-header .line { width: 80px; height: 4px; background: var(--gradient); margin: 0 auto; border-radius: 2px; }
-
-        /* Glass Card Style */
-        .card-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .progress-bar-bg { width: 100%; height: 10px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+        .progress-bar { height: 100%; border-radius: 10px; background: var(--gradient); box-shadow: 0 0 10px var(--primary); position: relative; }
         
-        .glass-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 30px;
-            border-radius: 20px;
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
-        .glass-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--primary);
-            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
-        }
-        .glass-card i { font-size: 3rem; color: var(--accent); margin-bottom: 20px; }
-        .glass-card h3 { margin-bottom: 15px; font-size: 1.5rem; }
-        .glass-card p { color: var(--text-sec); font-size: 0.95rem; }
+        .w-cpp { width: 90%; animation: loadSkill 1.5s ease-out; }
+        .w-py { width: 80%; animation: loadSkill 1.7s ease-out; }
+        .w-html { width: 85%; animation: loadSkill 1.9s ease-out; }
+        @keyframes loadSkill { from { width: 0; } }
 
-        /* --- 5. GALLERY CẦU KÌ --- */
-        .project-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;
+        /* --- 5. CONTACT --- */
+        .contact-section { text-align: center; background: rgba(0,0,0,0.2); padding-bottom: 50px; }
+        .social-icons { margin-top: 30px; display: flex; justify-content: center; gap: 20px; }
+        .social-btn {
+            width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.05);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-main); font-size: 1.2rem; transition: 0.3s; text-decoration: none; border: 1px solid rgba(255,255,255,0.1);
         }
-        .project-item {
-            position: relative; border-radius: 20px; overflow: hidden; height: 250px;
-            cursor: pointer;
-        }
-        .project-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        
-        .project-overlay {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
-            display: flex; flex-direction: column; justify-content: flex-end;
-            padding: 30px;
-            opacity: 0; transition: 0.5s; transform: translateY(20px);
-        }
-        
-        .project-item:hover img { transform: scale(1.1); }
-        .project-item:hover .project-overlay { opacity: 1; transform: translateY(0); }
-        
-        .project-overlay h4 { font-size: 1.5rem; color: var(--white); margin-bottom: 5px; }
-        .project-overlay p { color: var(--accent); font-weight: 500; }
+        .social-btn:hover { background: var(--accent); color: var(--bg-dark); transform: translateY(-5px); box-shadow: 0 0 20px var(--accent); }
 
-        /* --- 6. UPLOAD SECTION HIỆN ĐẠI --- */
-        .upload-zone {
-            background: rgba(6, 182, 212, 0.05);
-            border: 2px dashed var(--accent);
-            border-radius: 20px;
-            padding: 60px;
-            text-align: center;
-            transition: 0.3s;
-            max-width: 700px; margin: 0 auto;
-        }
-        .upload-zone:hover { background: rgba(6, 182, 212, 0.1); box-shadow: 0 0 30px rgba(6, 182, 212, 0.2); }
-        
-        .upload-zone i { font-size: 4rem; color: var(--primary); margin-bottom: 20px; animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-20px);} 60% {transform: translateY(-10px);} }
-
-        /* --- SCROLL REVEAL (CSS Class để JS kích hoạt) --- */
-        .reveal { opacity: 0; transform: translateY(50px); transition: 1s all ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* Responsive Mobile */
+        /* Responsive */
         @media (max-width: 768px) {
             .hero { flex-direction: column; text-align: center; padding-top: 120px; }
-            .hero-img-box { width: 300px; height: 300px; margin-top: 50px; }
+            .hero-img-box { width: 300px; height: 300px; margin-top: 40px; }
             .hero-img { width: 280px; height: 280px; }
-            .hero-text h1 { font-size: 3rem; }
+            .profile-container { grid-template-columns: 1fr; }
             .nav-links { display: none; }
+            .hero-text h1 { font-size: 2.5rem; } /* Chữ nhỏ lại trên điện thoại */
         }
     </style>
 </head>
@@ -239,128 +194,110 @@
     </div>
 
     <header>
-        <div class="logo">PORTFOLIO.</div>
+        <div class="logo">Quang <span>Thắng</span></div>
         <nav class="nav-links">
             <a href="#home">Trang chủ</a>
-            <a href="#services">Dịch vụ</a>
-            <a href="#projects">Dự án</a>
+            <a href="#profile">Hồ sơ</a>
             <a href="#contact">Liên hệ</a>
         </nav>
     </header>
 
     <section id="home" class="hero">
         <div class="hero-text">
-            <h3>Xin chào, tôi là</h3>
-            <h1>WEB <br> <span>DEVELOPER</span></h1>
-            <p>Tôi kiến tạo những trải nghiệm kỹ thuật số đẳng cấp, kết hợp giữa nghệ thuật thị giác và công nghệ lập trình hiện đại.</p>
-            <a href="#projects" class="btn-neon">Khám phá ngay</a>
+            <h3>Xin chào, mình là</h3>
+            <h1>ĐỖ QUANG <span>THẮNG</span></h1>
+            <p>
+                Sinh viên lớp <strong>25CTT6</strong> - Trường Đại học Khoa Học Tự Nhiên, ĐHQG HCM.<br>
+                Đam mê lập trình và đang trên hành trình trở thành một <strong>Dev lương nghìn đô</strong>.
+            </p>
+            <div class="hero-btn-group">
+                <a href="#contact" class="btn-glow">Liên Hệ Ngay</a>
+                <a href="#profile" class="btn-outline">Xem Hồ Sơ</a>
+            </div>
         </div>
+        
         <div class="hero-img-box">
             <div class="hero-blob"></div>
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Avatar" class="hero-img">
+            <img src="thangchandung.jpg" alt="Đỗ Quang Thắng" class="hero-img">
         </div>
     </section>
 
-    <section id="services">
-        <div class="section-header reveal">
-            <h2>Chuyên Môn Của Tôi</h2>
-            <div class="line"></div>
-        </div>
-        <div class="card-container">
-            <div class="glass-card reveal">
-                <i class="fas fa-paint-brush"></i>
-                <h3>UI/UX Design</h3>
-                <p>Thiết kế giao diện người dùng hiện đại, tập trung vào trải nghiệm mượt mà và thẩm mỹ cao.</p>
-            </div>
-            <div class="glass-card reveal">
-                <i class="fas fa-code"></i>
-                <h3>Web Development</h3>
-                <p>Xây dựng website chuẩn SEO, tốc độ cao với các công nghệ mới nhất như HTML5, CSS3, React.</p>
-            </div>
-            <div class="glass-card reveal">
-                <i class="fas fa-mobile-alt"></i>
-                <h3>Responsive</h3>
-                <p>Tối ưu hóa hiển thị hoàn hảo trên mọi thiết bị từ máy tính, máy tính bảng đến điện thoại.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <div class="section-header reveal">
-            <h2>Dự Án Tiêu Biểu</h2>
-            <div class="line"></div>
-        </div>
-        <div class="project-grid">
-            <div class="project-item reveal">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project 1">
-                <div class="project-overlay">
-                    <h4>E-Commerce App</h4>
-                    <p>Thiết kế & Lập trình Fullstack</p>
+    <section id="profile">
+        <h2 class="section-title">Hồ Sơ & <span>Kỹ Năng</span></h2>
+        
+        <div class="profile-container">
+            <div class="glass-box">
+                <h3 style="margin-bottom: 20px; font-size: 1.5rem; color: var(--accent); font-family: 'Montserrat', sans-serif; font-weight: 700;">THÔNG TIN CÁ NHÂN</h3>
+                <ul class="info-list">
+                    <li><i class="fas fa-calendar-alt"></i> <strong>Ngày sinh:</strong> <span>21/05/2007</span></li>
+                    <li><i class="fas fa-university"></i> <strong>Trường:</strong> <span>ĐH Khoa Học Tự Nhiên - HCMUS</span></li>
+                    <li><i class="fas fa-laptop-code"></i> <strong>Khoa:</strong> <span>Công Nghệ Thông Tin</span></li>
+                    <li><i class="fas fa-map-marker-alt"></i> <strong>Quê quán:</strong> <span>Quảng Ngãi</span></li>
+                    <li><i class="fas fa-user-tag"></i> <strong>Vai trò:</strong> <span>Web Developer</span></li>
+                    <li><i class="fas fa-futbol"></i> <strong>Sở thích:</strong> <span>Lập trình, Đá Bóng</span></li>
+                </ul>
+                <div style="margin-top: 20px; font-style: italic; opacity: 0.8; border-left: 3px solid var(--accent); padding-left: 15px;">
+                    "Ước mơ: Trở thành 1 Developer xuất sắc với mức lương nghìn đô."
                 </div>
             </div>
-            <div class="project-item reveal">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project 2">
-                <div class="project-overlay">
-                    <h4>Finance Dashboard</h4>
-                    <p>Giao diện quản lý tài chính</p>
+
+            <div class="glass-box">
+                <h3 style="margin-bottom: 25px; font-size: 1.5rem; color: var(--accent); font-family: 'Montserrat', sans-serif; font-weight: 700;">KỸ NĂNG</h3>
+                
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name"><i class="devicon-cplusplus-plain"></i> C++</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar w-cpp"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="project-item reveal">
-                <img src="https://images.unsplash.com/photo-1555421654-e74dc4d4452e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project 3">
-                <div class="project-overlay">
-                    <h4>Cyber Security Web</h4>
-                    <p>Landing Page bảo mật</p>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name"><i class="fab fa-python"></i> Python</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar w-py"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name"><i class="fab fa-html5"></i> HTML / CSS</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar w-html"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact">
-        <div class="section-header reveal">
-            <h2>Gửi File Dự Án</h2>
-            <div class="line"></div>
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Kết Nối Với <span>Tôi</span></h2>
+        <p style="font-size: 1.2rem; color: var(--text-sec);">Luôn sẵn sàng cho các dự án và cơ hội hợp tác mới.</p>
+        
+        <div class="social-icons">
+            <a href="https://www.facebook.com/thangfromthewest/?locale=vi_VN" target="_blank" class="social-btn" title="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="tel:0357876625" class="social-btn" title="Gọi điện: 0357876625">
+                <i class="fas fa-phone-alt"></i>
+            </a>
+            <a href="https://zalo.me/0357876625" target="_blank" class="social-btn" title="Zalo">
+                <i class="fas fa-comment-dots"></i>
+            </a>
         </div>
 
-        <div class="upload-zone reveal">
-            <i class="fas fa-cloud-upload-alt"></i>
-            <h3 style="margin-bottom: 10px; font-size: 1.8rem;">Kéo thả ảnh vào đây</h3>
-            <p style="color: var(--text-sec); margin-bottom: 30px;">Hoặc nhấn nút bên dưới để chọn file từ thiết bị của bạn</p>
-            
-            <form action="#" method="POST">
-                <input type="file" id="fileInput" style="display: none;">
-                <label for="fileInput" class="btn-neon" style="display: inline-block; padding: 12px 30px; font-size: 1rem;">
-                    Chọn File Ảnh
-                </label>
-            </form>
-            <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">Hỗ trợ: JPG, PNG, PDF (Max 10MB)</p>
-        </div>
+        <p style="margin-top: 30px; opacity: 0.5; font-size: 0.9rem;">
+            &copy; 2024 Đỗ Quang Thắng - Web Developer. <br>
+            Made with <i class="fas fa-heart" style="color: var(--accent);"></i> and C++.
+        </p>
     </section>
 
-    <footer style="text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 50px;">
-        <p style="color: var(--text-sec);">&copy; 2024 Design by Me using <span style="color: var(--accent)">Dark Blue Theme</span></p>
-    </footer>
-
-    <script>
-        window.addEventListener('scroll', reveal);
-
-        function reveal(){
-            var reveals = document.querySelectorAll('.reveal');
-
-            for(var i = 0; i < reveals.length; i++){
-                var windowheight = window.innerHeight;
-                var revealtop = reveals[i].getBoundingClientRect().top;
-                var revealpoint = 150;
-
-                if(revealtop < windowheight - revealpoint){
-                    reveals[i].classList.add('active');
-                }
-                else{
-                    reveals[i].classList.remove('active');
-                }
-            }
-        }
-    </script>
 </body>
 </html>
-
-
